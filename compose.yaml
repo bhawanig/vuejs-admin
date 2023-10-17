@@ -1,0 +1,20 @@
+version: "2.2"
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:80"
+    volumes:
+      - .:/src
+    tty: true
+    networks:
+      - app-network
+    command: /bin/sh -c "npm run serve"
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
